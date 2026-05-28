@@ -1,5 +1,4 @@
 import type { LinksFunction, LoaderFunctionArgs } from '@remix-run/node';
-import { json } from '@remix-run/node';
 import {
   Links,
   Meta,
@@ -35,8 +34,20 @@ export const links: LinksFunction = () => [
 ];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const { getTheme } = await themeSessionResolver(request);
-  return json({ theme: getTheme() });
+  try {
+    const { getTheme } = await themeSessionResolver(request);
+    return Response.json({ theme: getTheme() });
+  } catch (error) {
+    console.error('[root loader] theme resolve failed, fallback to null', error);
+    return Response.json(
+      { theme: null },
+      {
+        headers: {
+          'Set-Cookie': 'theme=; Max-Age=0; Path=/; SameSite=Lax',
+        },
+      },
+    );
+  }
 };
 
 const getThemeScript = () => `

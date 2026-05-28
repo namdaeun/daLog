@@ -3,10 +3,11 @@ import { createThemeSessionResolver } from 'remix-themes';
 
 const sessionStorage = createCookieSessionStorage({
   cookie: {
-    name: 'theme',
+    name: '__theme',
     path: '/',
     httpOnly: true,
     sameSite: 'lax',
+    secrets: [process.env.SESSION_SECRET ?? 'dev-theme-secret'],
   },
 });
 
