@@ -41,12 +41,12 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 const getThemeScript = () => `
   (function() {
-    var LIGHT = '${lightTheme}';
-    var DARK = '${darkTheme}';
-    var root = document.documentElement;
-    var cookieMatch = document.cookie.match(/theme=(light|dark)/);
-    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    var theme = cookieMatch ? cookieMatch[1] : (prefersDark ? 'dark' : 'light');
+    let LIGHT = '${lightTheme}';
+    let DARK = '${darkTheme}';
+    let root = document.documentElement;
+    let cookieMatch = document.cookie.match(/theme=(light|dark)/);
+    let prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    let theme = cookieMatch ? cookieMatch[1] : (prefersDark ? 'dark' : 'light');
 
     root.classList.remove(LIGHT, DARK);
     root.classList.add(theme === 'dark' ? DARK : LIGHT);
