@@ -16,7 +16,7 @@
     "db:migrate": "pnpm --filter server run db:migrate"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": "20.x"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
