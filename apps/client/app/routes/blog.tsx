@@ -5,7 +5,7 @@ import { getAllPosts } from '~/utils/markdown.server';
 import * as S from './blog.css';
 
 export const loader = async () => {
-  const posts = getAllPosts();
+  const posts = await getAllPosts();
   return json({ posts });
 };
 
