@@ -6,12 +6,6 @@ import Navigation from '../Navigation/Navigation';
 import Switch from '../Switch/Switch';
 import * as s from './styles.css';
 
-const getSystemTheme = (): 'light' | 'dark' =>
-  typeof window !== 'undefined' &&
-  window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? 'dark'
-    : 'light';
-
 const useActiveSection = () => {
   const [activeSection, setActiveSection] = useState('about');
 
@@ -36,10 +30,16 @@ const useActiveSection = () => {
 };
 
 const Header = () => {
+  const [mounted, setMounted] = useState(false);
+
   const [theme, setTheme] = useTheme();
   const activeSection = useActiveSection();
 
-  const currentTheme = theme ?? getSystemTheme();
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const currentTheme: Theme = (theme ?? 'light') as Theme;
 
   const handleToggle = () => {
     setTheme((currentTheme === 'light' ? 'dark' : 'light') as Theme);
@@ -58,7 +58,7 @@ const Header = () => {
         </Link>
       </div>
 
-      <Switch mode={currentTheme} onChange={handleToggle} />
+      {mounted ? <Switch mode={currentTheme} onChange={handleToggle} /> : null}
     </header>
   );
 };
