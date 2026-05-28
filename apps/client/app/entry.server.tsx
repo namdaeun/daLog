@@ -2,10 +2,16 @@ import { PassThrough } from 'node:stream';
 import type { EntryContext } from '@remix-run/node';
 import { createReadableStreamFromReadable } from '@remix-run/node';
 import { RemixServer } from '@remix-run/react';
-import { isbot } from 'isbot';
+
 import { renderToPipeableStream } from 'react-dom/server';
 
 const ABORT_DELAY = 5_000;
+const BOT_USER_AGENT_PATTERN =
+  /bot|crawler|spider|crawling|slurp|bingpreview|facebookexternalhit|embedly|quora link preview|linkedinbot|twitterbot|whatsapp|slackbot|telegrambot/i;
+
+function isBotUserAgent(userAgent: string) {
+  return BOT_USER_AGENT_PATTERN.test(userAgent);
+}
 
 export default function handleRequest(
   request: Request,
@@ -13,7 +19,7 @@ export default function handleRequest(
   responseHeaders: Headers,
   remixContext: EntryContext,
 ) {
-  return isbot(request.headers.get('user-agent') || '')
+  return isBotUserAgent(request.headers.get('user-agent') || '')
     ? handleBotRequest(
         request,
         responseStatusCode,
