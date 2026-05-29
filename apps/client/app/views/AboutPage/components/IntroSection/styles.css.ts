@@ -2,6 +2,25 @@ import { style } from '@vanilla-extract/css';
 import { breakpoints } from '~/styles/breakpoints';
 import { vars } from '~/styles/global.css';
 
+const headingResponsive = {
+  '@media': {
+    [breakpoints.TABLET_MAX]: {
+      fontSize: '4.8rem',
+    },
+    [breakpoints.MOBILE_MAX]: {
+      fontSize: '3.2rem',
+    },
+  },
+} as const;
+
+const headingBase = {
+  fontSize: '4.8rem',
+  fontWeight: '500',
+  lineHeight: '160%',
+  wordBreak: 'keep-all',
+  ...headingResponsive,
+} as const;
+
 export const wrapper = style({
   display: 'flex',
   flexDirection: 'column',
@@ -48,53 +67,18 @@ export const lineMask = style({
 });
 
 export const title = style({
+  ...headingBase,
   color: vars.themeColor.color.neutral_3,
-  fontSize: '4.8rem',
-  fontWeight: '500',
-  lineHeight: '160%',
-
-  '@media': {
-    [breakpoints.TABLET_MAX]: {
-      fontSize: '4.8rem',
-    },
-    [breakpoints.MOBILE_MAX]: {
-      fontSize: '3.2rem',
-    },
-  },
 });
 
 export const subTitle = style({
+  ...headingBase,
   color: vars.themeColor.color.neutral_3,
-  fontSize: '4.8rem',
-  fontWeight: '500',
-  lineHeight: '160%',
-  wordBreak: 'keep-all',
-
-  '@media': {
-    [breakpoints.TABLET_MAX]: {
-      fontSize: '4.8rem',
-    },
-    [breakpoints.MOBILE_MAX]: {
-      fontSize: '3.2rem',
-    },
-  },
 });
 
 export const name = style({
+  ...headingBase,
   color: vars.themeColor.color.neutral_1,
-  fontSize: '4.8rem',
-  fontWeight: '500',
-  lineHeight: '160%',
-  wordBreak: 'keep-all',
-
-  '@media': {
-    [breakpoints.TABLET_MAX]: {
-      fontSize: '4.8rem',
-    },
-    [breakpoints.MOBILE_MAX]: {
-      fontSize: '3.2rem',
-    },
-  },
 });
 
 export const description = style({
