@@ -2,10 +2,10 @@ import type { Post, PostMeta } from '@diary/shared';
 
 export type { Post, PostMeta };
 
-const API_URL = process.env.API_URL ?? 'http://localhost:8787';
+const BASE_URL = import.meta.env.VITE_BASE_URL ?? 'http://localhost:8787';
 
 export async function getAllPosts(): Promise<PostMeta[]> {
-  const res = await fetch(`${API_URL}/posts`);
+  const res = await fetch(`${BASE_URL}/posts`);
   if (!res.ok) {
     throw new Error(`Failed to fetch posts: ${res.status}`);
   }
@@ -13,7 +13,7 @@ export async function getAllPosts(): Promise<PostMeta[]> {
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
-  const res = await fetch(`${API_URL}/posts/${encodeURIComponent(slug)}`);
+  const res = await fetch(`${BASE_URL}/posts/${encodeURIComponent(slug)}`);
   if (res.status === 404) {
     return null;
   }
