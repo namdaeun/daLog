@@ -1,4 +1,4 @@
-import type { LinksFunction, LoaderFunctionArgs } from '@remix-run/node';
+import { type LinksFunction, type LoaderFunctionArgs, json } from '@remix-run/node';
 import {
   Links,
   Meta,
@@ -36,10 +36,10 @@ export const links: LinksFunction = () => [
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   try {
     const { getTheme } = await themeSessionResolver(request);
-    return Response.json({ theme: getTheme() });
+    return json({ theme: getTheme() });
   } catch (error) {
     console.error('[root loader] theme resolve failed, fallback to null', error);
-    return Response.json(
+    return json(
       { theme: null },
       {
         headers: {
