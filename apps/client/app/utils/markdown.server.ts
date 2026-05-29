@@ -4,7 +4,7 @@ export type { Post, PostMeta };
 
 const BASE_URL = import.meta.env.VITE_BASE_URL ?? 'http://localhost:8787';
 
-export async function getAllPosts(): Promise<PostMeta[]> {
+export async function getPosts(): Promise<PostMeta[]> {
   const res = await fetch(`${BASE_URL}/posts`);
   if (!res.ok) {
     throw new Error(`Failed to fetch posts: ${res.status}`);
