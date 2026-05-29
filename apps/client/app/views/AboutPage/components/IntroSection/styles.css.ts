@@ -43,6 +43,10 @@ export const titleWrapper = style({
   },
 });
 
+export const lineMask = style({
+  overflow: 'hidden',
+});
+
 export const title = style({
   color: vars.themeColor.color.neutral_3,
   fontSize: '4.8rem',

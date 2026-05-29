@@ -1,4 +1,5 @@
 import type { MetaFunction } from '@remix-run/node';
+import { motion, useScroll } from 'framer-motion';
 import ExperienceSection from '~/views/AboutPage/components/ExperienceSection/ExperienceSection';
 import IntroSection from '~/views/AboutPage/components/IntroSection/IntroSection';
 import ProjectSection from '~/views/AboutPage/components/ProjectSection/ProjectSection';
@@ -10,8 +11,13 @@ export const meta: MetaFunction = () => {
 };
 
 const About = () => {
+  const { scrollYProgress } = useScroll();
+
   return (
     <div className={S.pageWrapper}>
+      <div className={S.progressRail} aria-hidden>
+        <motion.div className={S.progressLine} style={{ scaleY: scrollYProgress }} />
+      </div>
       <IntroSection />
       <ProjectSection />
       <ExperienceSection />

@@ -69,6 +69,14 @@ globalStyle(`.${lightTheme}, .${darkTheme}`, {
 
 globalStyle('html', {
   fontSize: '62.5%',
+  scrollbarWidth: 'none',
+  msOverflowStyle: 'none',
+});
+
+globalStyle('html::-webkit-scrollbar', {
+  display: 'none',
+  width: 0,
+  height: 0,
 });
 
 globalStyle('*', {
@@ -85,4 +93,13 @@ globalStyle('body', {
   letterSpacing: '-0.01em',
   WebkitFontSmoothing: 'antialiased',
   MozOsxFontSmoothing: 'grayscale',
+  colorScheme: 'dark light',
+  scrollbarWidth: 'none',
+  msOverflowStyle: 'none',
+});
+
+globalStyle('body::-webkit-scrollbar', {
+  display: 'none',
+  width: 0,
+  height: 0,
 });
