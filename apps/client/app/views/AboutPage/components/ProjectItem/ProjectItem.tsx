@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useMotionTemplate, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import Tag from '~/components/Tag/Tag';
 import type { Project } from '~/views/AboutPage/types';
@@ -50,17 +50,20 @@ const ProjectItem = ({ project, leftSide = false }: ProjectItemProps) => {
 
   const x = useTransform(
     scrollYProgress,
-    [0, 0.3, 1],
-    [leftSide ? -300 : 300, 0, 0],
+    [0, 0.35, 1],
+    [leftSide ? -72 : 72, 0, 0],
   );
 
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.25, 1], [0, 1, 1]);
+  const scale = useTransform(scrollYProgress, [0, 0.35, 1], [0.96, 1, 1]);
+  const blur = useTransform(scrollYProgress, [0, 0.35, 1], [8, 0, 0]);
+  const filter = useMotionTemplate`blur(${blur}px)`;
 
   return (
     <motion.section
       ref={ref}
       className={s.wrapper}
-      style={{ x, opacity }}
+      style={{ x, opacity, scale, filter }}
       onClick={() => {
         window.open(githubUrl, '_blank');
       }}

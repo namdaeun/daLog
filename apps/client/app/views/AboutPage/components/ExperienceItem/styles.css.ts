@@ -12,10 +12,12 @@ export const wrapper = style({
   borderRadius: '2rem',
   backgroundColor: vars.themeColor.color.neutral_5,
   border: `1px solid ${vars.themeColor.color.neutral_4}`,
+  transition: 'background-color 0.28s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1)',
 
   ':hover': {
     backgroundColor: vars.themeColor.color.neutral_4,
-    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+    borderColor: vars.themeColor.color.neutral_3,
+    boxShadow: '0 12px 30px rgba(0, 0, 0, 0.12)',
   },
 });
 

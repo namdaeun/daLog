@@ -3,15 +3,18 @@ import type { Variants } from 'framer-motion';
 export const sectionVariants: Variants = {
   hidden: {
     opacity: 0,
-    y: 100,
+    y: 36,
+    filter: 'blur(8px)',
   },
   visible: {
     opacity: 1,
     y: 0,
+    filter: 'blur(0px)',
     transition: {
-      duration: 0.8,
-      ease: 'easeOut',
-      staggerChildren: 0.3,
+      duration: 0.65,
+      ease: [0.22, 1, 0.36, 1],
+      staggerChildren: 0.1,
+      delayChildren: 0.05,
     },
   },
 };
@@ -39,6 +42,9 @@ export const listVariants: Variants = {
   },
   visible: {
     opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+    },
   },
 };
 
@@ -46,13 +52,15 @@ export const itemVariants: Variants = {
   hidden: {
     opacity: 0,
     y: 20,
+    scale: 0.98,
   },
   visible: {
     opacity: 1,
     y: 0,
+    scale: 1,
     transition: {
-      duration: 0.4,
-      ease: 'easeOut',
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1],
     },
   },
 };

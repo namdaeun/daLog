@@ -5,18 +5,14 @@ import * as s from './styles.css';
 
 interface ReviewItemProps {
   review: Review;
+  variants: Variants;
 }
 
-const reviewVariants: Variants = {
-  hidden: { y: 30 },
-  visible: { y: 0 },
-};
-
-const ReviewItem = ({ review }: ReviewItemProps) => {
+const ReviewItem = ({ review, variants }: ReviewItemProps) => {
   const { name, info, description } = review;
 
   return (
-    <motion.article className={s.wrapper} variants={reviewVariants}>
+    <motion.article className={s.wrapper} variants={variants}>
       <p className={s.description}>{description}</p>
       <div className={s.infoLayout}>
         <h1 className={s.name}>{maskName(name)}</h1>

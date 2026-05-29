@@ -9,6 +9,11 @@ export const wrapper = style({
   borderRadius: '1.6rem',
   overflow: 'hidden',
   cursor: 'pointer',
+  transition: 'transform 0.3s cubic-bezier(0.22, 1, 0.36, 1)',
+
+  ':hover': {
+    transform: 'translateY(-4px)',
+  },
 });
 
 export const imageContainer = style({
@@ -48,10 +53,13 @@ export const image = style({
   height: '40rem',
   objectFit: 'cover',
   borderRadius: '2rem',
-  transition: 'transform 0.3s ease',
+  transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), filter 0.45s cubic-bezier(0.22, 1, 0.36, 1)',
 
-  ':hover': {
-    transform: 'scale(1.02)',
+  selectors: {
+    [`${wrapper}:hover &`]: {
+      transform: 'scale(1.03)',
+      filter: 'brightness(1.03)',
+    },
   },
 
   '@media': {

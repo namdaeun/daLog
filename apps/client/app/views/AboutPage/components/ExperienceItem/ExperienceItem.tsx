@@ -16,7 +16,8 @@ const ExperienceItem = ({ experience }: ExperienceItemProps) => {
       className={s.wrapper}
       variants={itemVariants}
       key={experience.id}
-      whileHover={{ scale: 1.02 }}
+      whileHover={{ y: -6, scale: 1.01 }}
+      transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
     >
       <img src={logoUrl} alt={company} className={s.logo} />
       <div className={s.contentLayout}>
