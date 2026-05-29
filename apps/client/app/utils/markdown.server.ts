@@ -2,7 +2,7 @@ import type { Post, PostMeta } from '@diary/shared';
 
 export type { Post, PostMeta };
 
-const BASE_URL = import.meta.env.VITE_BASE_URL ?? 'http://localhost:8787';
+const BASE_URL = process.env.API_URL ?? 'http://localhost:8787';
 
 export async function getPosts(): Promise<PostMeta[]> {
   const res = await fetch(`${BASE_URL}/posts`);
